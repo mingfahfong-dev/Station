@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Sample Station Reference</title>
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231A2332'/%3E%3Cline x1='20' y1='20' x2='44' y2='20' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Cline x1='20' y1='32' x2='44' y2='32' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Cline x1='20' y1='44' x2='44' y2='44' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Cline x1='20' y1='20' x2='20' y2='44' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Cline x1='32' y1='20' x2='32' y2='44' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Cline x1='44' y1='20' x2='44' y2='44' stroke='%23E07A00' stroke-width='2.5' stroke-opacity='.5'/%3E%3Ccircle cx='20' cy='20' r='5' fill='%23E07A00'/%3E%3Ccircle cx='32' cy='20' r='5' fill='%23E07A00'/%3E%3Ccircle cx='44' cy='20' r='5' fill='%23E07A00'/%3E%3Ccircle cx='20' cy='32' r='5' fill='%23E07A00'/%3E%3Ccircle cx='32' cy='32' r='6' fill='white'/%3E%3Ccircle cx='44' cy='32' r='5' fill='%23E07A00'/%3E%3Ccircle cx='20' cy='44' r='5' fill='%23E07A00'/%3E%3Ccircle cx='32' cy='44' r='5' fill='%23E07A00'/%3E%3Ccircle cx='44' cy='44' r='5' fill='%23E07A00'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%231A2332'/%3E%3Cline x1='55' y1='55' x2='125' y2='55' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Cline x1='55' y1='90' x2='125' y2='90' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Cline x1='55' y1='125' x2='125' y2='125' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Cline x1='55' y1='55' x2='55' y2='125' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Cline x1='90' y1='55' x2='90' y2='125' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Cline x1='125' y1='55' x2='125' y2='125' stroke='%23E07A00' stroke-width='5' stroke-opacity='.5'/%3E%3Ccircle cx='55' cy='55' r='13' fill='%23E07A00'/%3E%3Ccircle cx='90' cy='55' r='13' fill='%23E07A00'/%3E%3Ccircle cx='125' cy='55' r='13' fill='%23E07A00'/%3E%3Ccircle cx='55' cy='90' r='13' fill='%23E07A00'/%3E%3Ccircle cx='90' cy='90' r='15' fill='white'/%3E%3Ccircle cx='125' cy='90' r='13' fill='%23E07A00'/%3E%3Ccircle cx='55' cy='125' r='13' fill='%23E07A00'/%3E%3Ccircle cx='90' cy='125' r='13' fill='%23E07A00'/%3E%3Ccircle cx='125' cy='125' r='13' fill='%23E07A00'/%3E%3C/svg%3E">
-<meta name="theme-color" content="#111827">
+<link rel="icon" id="favicon" type="image/png">
+<link rel="apple-touch-icon" id="touchIcon">
+<meta name="theme-color" content="#1A0A2E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="SS Ref">
@@ -586,6 +586,157 @@
     noResults.style.display = visible === 0 ? 'block' : 'none';
     resultCount.textContent = `Showing ${visible} of 8 berths`;
   }
+
+  /* ── Generate PNG icon via Canvas ── */
+  function drawIcon(size) {
+    const c = document.createElement('canvas');
+    c.width = c.height = size;
+    const ctx = c.getContext('2d');
+    const s = size / 180; // scale factor
+
+    // Rounded rect clip
+    const r = size * 0.22;
+    ctx.beginPath();
+    ctx.moveTo(r, 0); ctx.lineTo(size - r, 0);
+    ctx.quadraticCurveTo(size, 0, size, r);
+    ctx.lineTo(size, size - r);
+    ctx.quadraticCurveTo(size, size, size - r, size);
+    ctx.lineTo(r, size); ctx.quadraticCurveTo(0, size, 0, size - r);
+    ctx.lineTo(0, r); ctx.quadraticCurveTo(0, 0, r, 0);
+    ctx.closePath(); ctx.clip();
+
+    // Claude purple gradient background
+    const grad = ctx.createLinearGradient(0, 0, size, size);
+    grad.addColorStop(0,   '#2D0A5E');
+    grad.addColorStop(0.5, '#6B21A8');
+    grad.addColorStop(1,   '#9333EA');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, size, size);
+
+    // Subtle ore texture overlay
+    const ore = ctx.createRadialGradient(size*0.3, size*0.7, 0, size*0.3, size*0.7, size*0.6);
+    ore.addColorStop(0, 'rgba(180,80,0,0.28)');
+    ore.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ore;
+    ctx.fillRect(0, 0, size, size);
+
+    ctx.strokeStyle = 'rgba(255,255,255,0.92)';
+    ctx.fillStyle   = 'rgba(255,255,255,0.92)';
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    // === RECLAIMER SILHOUETTE ===
+    // All coords designed for 180×180, scaled by s
+
+    // Ground rail / base line
+    ctx.lineWidth = 4 * s;
+    ctx.beginPath();
+    ctx.moveTo(18*s, 148*s); ctx.lineTo(162*s, 148*s);
+    ctx.stroke();
+
+    // Crawler body (main undercarriage)
+    ctx.lineWidth = 3.5 * s;
+    ctx.beginPath();
+    ctx.rect(38*s, 138*s, 88*s, 10*s);
+    ctx.stroke();
+    // Crawler wheels
+    [48, 68, 88, 108, 118].forEach(x => {
+      ctx.beginPath();
+      ctx.arc(x*s, 148*s, 5*s, 0, Math.PI*2);
+      ctx.stroke();
+    });
+
+    // Main tower / slewing body
+    ctx.lineWidth = 4 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 138*s); ctx.lineTo(82*s, 90*s);
+    ctx.stroke();
+    // Tower width
+    ctx.beginPath();
+    ctx.moveTo(74*s, 138*s); ctx.lineTo(74*s, 100*s);
+    ctx.lineTo(82*s, 90*s); ctx.lineTo(90*s, 100*s);
+    ctx.lineTo(90*s, 138*s);
+    ctx.stroke();
+
+    // Main boom (long arm going upper-left toward bucket wheel)
+    ctx.lineWidth = 4 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 95*s); ctx.lineTo(20*s, 68*s);
+    ctx.stroke();
+    // Boom top chord
+    ctx.lineWidth = 2.5 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 90*s); ctx.lineTo(20*s, 63*s);
+    ctx.stroke();
+    // Boom struts
+    [[65,91,58,70],[48,85,46,68],[32,78,30,67]].forEach(([x1,y1,x2,y2]) => {
+      ctx.beginPath();
+      ctx.moveTo(x1*s, y1*s); ctx.lineTo(x2*s, y2*s);
+      ctx.stroke();
+    });
+
+    // Counterweight boom (upper-right)
+    ctx.lineWidth = 3.5 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 95*s); ctx.lineTo(148*s, 75*s);
+    ctx.stroke();
+    // Counterweight box
+    ctx.lineWidth = 2.5 * s;
+    ctx.beginPath();
+    ctx.rect(140*s, 68*s, 18*s, 12*s);
+    ctx.stroke();
+
+    // Gantry mast (vertical from tower top)
+    ctx.lineWidth = 3 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 90*s); ctx.lineTo(82*s, 52*s);
+    ctx.stroke();
+    // Stay cables from mast tip to boom
+    ctx.lineWidth = 1.8 * s;
+    ctx.beginPath();
+    ctx.moveTo(82*s, 52*s); ctx.lineTo(20*s, 65*s);  // to bucket wheel end
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(82*s, 52*s); ctx.lineTo(148*s, 72*s);  // to counterweight
+    ctx.stroke();
+
+    // BUCKET WHEEL (the iconic circular part)
+    const wx = 18*s, wy = 66*s, wr = 16*s;
+    ctx.lineWidth = 3 * s;
+    ctx.beginPath();
+    ctx.arc(wx, wy, wr, 0, Math.PI*2);
+    ctx.stroke();
+    // Hub
+    ctx.lineWidth = 2 * s;
+    ctx.beginPath();
+    ctx.arc(wx, wy, 5*s, 0, Math.PI*2);
+    ctx.stroke();
+    // Bucket spokes + buckets (8 spokes)
+    for (let i = 0; i < 8; i++) {
+      const angle = (i / 8) * Math.PI * 2;
+      const sx = wx + Math.cos(angle) * 5*s;
+      const sy = wy + Math.sin(angle) * 5*s;
+      const ex = wx + Math.cos(angle) * wr;
+      const ey = wy + Math.sin(angle) * wr;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy); ctx.lineTo(ex, ey);
+      ctx.stroke();
+      // Bucket scoop arc at tip
+      const bAngle1 = angle - 0.32;
+      const bAngle2 = angle + 0.32;
+      ctx.beginPath();
+      ctx.arc(ex, ey, 4.5*s, bAngle1, bAngle2);
+      ctx.stroke();
+    }
+
+    return c.toDataURL('image/png');
+  }
+
+  // Set icons
+  const icon180 = drawIcon(180);
+  const icon64  = drawIcon(64);
+  document.getElementById('touchIcon').href = icon180;
+  document.getElementById('favicon').href   = icon64;
 
   searchInput.addEventListener('input', applyFilters);
   tabBtns.forEach(btn => {
