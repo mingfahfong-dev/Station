@@ -302,6 +302,42 @@
   }
   .tag-icon { width: 6px; height: 6px; border-radius: 50%; background: var(--text-dim); flex-shrink: 0; }
 
+  /* ── Moisture Correction ── */
+  .mc-section {
+    margin-top: 13px;
+    padding-top: 13px;
+    border-top: 1px solid var(--border);
+  }
+  .mc-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .mc-table th {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 0 0 7px;
+  }
+  .mc-table th:not(:first-child) { text-align: center; }
+  .mc-table td {
+    padding: 5px 0;
+    color: var(--text-sub);
+    border-top: 1px solid var(--border);
+    font-weight: 500;
+  }
+  .mc-table td:first-child { font-weight: 600; color: var(--text); }
+  .mc-table td:not(:first-child) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    color: #7AAAFF;
+  }
+  .mc-table td.na { color: var(--text-dim); font-weight: 400; font-style: italic; text-align: center; }
+
   /* ── No results ── */
   .no-results {
     display: none;
@@ -438,6 +474,17 @@
           <span class="tag"><span class="tag-icon"></span>SS-730</span>
           <span class="tag"><span class="tag-icon"></span>SS-611</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-21</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-730</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-611</td><td>1.14</td><td>1.14</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -454,6 +501,17 @@
           <span class="tag"><span class="tag-icon"></span>SS-730</span>
           <span class="tag"><span class="tag-icon"></span>SS-611</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-21</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-730</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-611</td><td>1.14</td><td>1.14</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -469,6 +527,16 @@
           <span class="tag"><span class="tag-icon"></span>SS-705</span>
           <span class="tag"><span class="tag-icon"></span>SS-891</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-705</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-891</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -483,6 +551,16 @@
         <div class="tags">
           <span class="tag"><span class="tag-icon"></span>SS-705</span>
           <span class="tag"><span class="tag-icon"></span>SS-891</span>
+        </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-705</td><td>0.92</td><td>0.64</td></tr>
+              <tr><td>SS-891</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -501,6 +579,18 @@
           <span class="tag"><span class="tag-icon"></span>SS-780</span>
           <span class="tag"><span class="tag-icon"></span>SS-563</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-501</td><td>1.14</td><td>1.14</td></tr>
+              <tr><td>SS-510</td><td>1.14</td><td>1.14</td></tr>
+              <tr><td>SS-780</td><td class="na">—</td><td class="na">—</td></tr>
+              <tr><td>SS-563</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -518,6 +608,18 @@
           <span class="tag"><span class="tag-icon"></span>SS-780</span>
           <span class="tag"><span class="tag-icon"></span>SS-563</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-501</td><td>1.14</td><td>1.14</td></tr>
+              <tr><td>SS-510</td><td>1.14</td><td>1.14</td></tr>
+              <tr><td>SS-780</td><td class="na">—</td><td class="na">—</td></tr>
+              <tr><td>SS-563</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -533,6 +635,16 @@
           <span class="tag"><span class="tag-icon"></span>SS-809</span>
           <span class="tag"><span class="tag-icon"></span>SS-897</span>
         </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-809</td><td>0.92</td><td>0.79</td></tr>
+              <tr><td>SS-897</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
@@ -547,6 +659,16 @@
         <div class="tags">
           <span class="tag"><span class="tag-icon"></span>SS-809</span>
           <span class="tag"><span class="tag-icon"></span>SS-897</span>
+        </div>
+        <div class="mc-section">
+          <div class="card-body-label">Moisture Correction Factors</div>
+          <table class="mc-table">
+            <thead><tr><th>Station</th><th>MACF</th><th>YNDF</th></tr></thead>
+            <tbody>
+              <tr><td>SS-809</td><td>0.92</td><td>0.79</td></tr>
+              <tr><td>SS-897</td><td>0.92</td><td>0.64</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
